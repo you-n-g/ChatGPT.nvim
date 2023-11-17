@@ -17,6 +17,8 @@ local function get_selection_center(start_row, start_col, end_row, end_col)
 end
 
 function BaseAction:init(opts)
+  -- get the register c as the context
+  opts.variables = vim.tbl_extend("force", opts.variables or {}, { context = vim.fn.getreg('c') })
   self.opts = opts
 end
 
