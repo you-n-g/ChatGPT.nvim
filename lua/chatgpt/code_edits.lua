@@ -46,6 +46,11 @@ local build_edit_messages = function(input, instructions, use_functions_for_edit
     system_message_content =
       "Apply the changes requested by the user to the code. Output ONLY the changed code. DO NOT wrap the code in a formatting block. DO NOT provide other text or explanation."
   end
+  -- if register c is not empty, use it as the context
+  local context = vim.fn.getreg("c")
+  if context ~= "" then
+    system_message_content = "Context:\n```\n".. context .. "\n```\n\n" .. system_message_content
+  end
   local messages = {
     {
       role = "system",
