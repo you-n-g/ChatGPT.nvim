@@ -88,6 +88,7 @@ function Api.edits(custom_params, cb)
 end
 
 function Api.make_call(url, params, cb)
+  Api.last_params = params
   TMP_MSG_FILENAME = os.tmpname()
   local f = io.open(TMP_MSG_FILENAME, "w+")
   if f == nil then
