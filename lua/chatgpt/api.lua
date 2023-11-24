@@ -11,6 +11,7 @@ end
 
 function Api.chat_completions(custom_params, cb, should_stop)
   local params = vim.tbl_extend("keep", custom_params, Config.options.openai_params)
+  Api.last_params = params  -- This will be helpful for debugging..
   local stream = params.stream or false
   if stream then
     local raw_chunks = ""
